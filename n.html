@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>正の数・負の数 計算練習</title>
+</head>
+<body>
+    <h1>正の数・負の数 計算練習</h1>
+    <div id="quiz-container"></div>
+
+    <script>
+        const questions = [
+            { q: "(-3) + (-7)", a: -10 },
+            { q: "8 + (-5)", a: 3 },
+            { q: "4 - (-6)", a: 10 },
+            { q: "-2 - 8", a: -10 },
+            { q: "-9 - (-4)", a: -5 }
+        ];
+
+        const container = document.getElementById('quiz-container');
+        
+        questions.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <p>問${index + 1}: ${item.q} = 
+                <input type="number" id="ans${index}">
+                <button onclick="check(${index}, ${item.a})">解答</button>
+                <span id="result${index}"></span></p>
+            `;
+            container.appendChild(div);
+        });
+
+        function check(index, answer) {
+            const userAns = document.getElementById('ans' + index).value;
+            const res = document.getElementById('result' + index);
+            if (parseInt(userAns) === answer) {
+                res.innerText = " 正解！";
+                res.style.color = "green";
+            } else {
+                res.innerText = " 残念！正解は " + answer;
+                res.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
